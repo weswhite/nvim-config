@@ -3,25 +3,29 @@ local options = {
     lua = { "stylua" },
     css = { "prettier" },
     html = { "prettier" },
-    javascript = { "prettier" },
-    typescript = { "prettier" },
-    javascriptreact = { "prettier" },
-    typescriptreact = { "prettier" },
+    javascript = { "eslint_d", "prettier" },
+    typescript = { "eslint_d", "prettier" },
+    javascriptreact = { "eslint_d", "prettier" },
+    typescriptreact = { "eslint_d", "prettier" },
     json = { "prettier" },
     markdown = { "prettier" },
     yaml = { "prettier" },
-    yml = { "prettier" },
     scss = { "prettier" },
     less = { "prettier" },
-    ["typescript.tsx"] = { "prettier" },
-    ["javascript.jsx"] = { "prettier" },
   },
 
   format_on_save = {
-    timeout_ms = 500,
+    timeout_ms = 3000,
     lsp_fallback = true,
+  },
+
+  formatters = {
+    eslint_d = {
+      command = "eslint_d",
+      args = { "--fix-to-stdout", "--stdin", "--stdin-filename", "$FILENAME" },
+      stdin = true,
+    },
   },
 }
 
--- Ensure the module returns the options
 return options

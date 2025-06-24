@@ -78,8 +78,8 @@ map("n", "<leader>qs", '<cmd>lua require("persistence").load()<cr>', { desc = "R
 map("n", "<leader>ql", '<cmd>lua require("persistence").load({ last = true })<cr>', { desc = "Restore Last Session" })
 
 -- Trouble diagnostics
-map("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Toggle Trouble" })
-map("n", "<leader>xd", "<cmd>Trouble diagnostics toggle document_diagnostics<cr>", { desc = "Document Diagnostics" })
+map("n", "<leader>xx", "<cmd>TroubleToggle<cr>", { desc = "Toggle Trouble" })
+map("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", { desc = "Document Diagnostics" })
 
 -- Quick actions
 map("n", "<leader>L", "<cmd>Lazy<cr>", { desc = "Lazy" })
