@@ -1,7 +1,7 @@
 return {
   {
     "stevearc/conform.nvim",
-    event = 'BufWritePre',
+    event = { 'BufWritePre', 'BufNewFile', 'BufRead' }, -- Load on file open
     config = function()
       require "configs.conform"
     end,

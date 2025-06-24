@@ -9,6 +9,12 @@ local options = {
     typescriptreact = { "prettier" },
     json = { "prettier" },
     markdown = { "prettier" },
+    yaml = { "prettier" },
+    yml = { "prettier" },
+    scss = { "prettier" },
+    less = { "prettier" },
+    ["typescript.tsx"] = { "prettier" },
+    ["javascript.jsx"] = { "prettier" },
   },
 
   format_on_save = {
@@ -17,4 +23,5 @@ local options = {
   },
 }
 
+-- Ensure the module returns the options
 return options

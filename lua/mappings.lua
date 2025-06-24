@@ -87,3 +87,24 @@ map("n", "<leader>M", "<cmd>Mason<cr>", { desc = "Mason" })
 
 -- Clear search with <esc>
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
+
+-- Copy file paths
+map("n", "<leader>cf", function()
+  local path = vim.fn.expand('%')
+  vim.fn.setreg('+', path)
+  vim.notify('Copied: ' .. path, vim.log.levels.INFO)
+end, { desc = "Copy relative file path" })
+
+-- Copy full file path
+map("n", "<leader>cF", function()
+  local path = vim.fn.expand('%:p')
+  vim.fn.setreg('+', path)
+  vim.notify('Copied: ' .. path, vim.log.levels.INFO)
+end, { desc = "Copy full file path" })
+
+-- Copy just filename
+map("n", "<leader>cn", function()
+  local path = vim.fn.expand('%:t')
+  vim.fn.setreg('+', path)
+  vim.notify('Copied: ' .. path, vim.log.levels.INFO)
+end, { desc = "Copy filename" })
