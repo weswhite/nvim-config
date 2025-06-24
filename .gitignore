@@ -1,0 +1,17 @@
+# Lazy.nvim plugin directory (plugins are downloaded here)
+lazy-lock.json
+
+# Any log files
+*.log
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Neovim swap files (if any accidentally get created here)
+*.swp
+*.swo
+
+# Personal notes or temporary files
+notes.md
+temp/
