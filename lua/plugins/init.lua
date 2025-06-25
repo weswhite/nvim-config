@@ -142,4 +142,65 @@ return {
       },
     },
   },
+
+  -- Main Copilot plugin
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup({
+        suggestion = {
+          enabled = true,
+          auto_trigger = true,
+          debounce = 75,
+          keymap = {
+            accept = "<M-l>",      -- Alt+L to accept suggestion
+            accept_word = "<M-w>", -- Alt+W to accept word
+            next = "<M-]>",        -- Alt+] for next suggestion
+            prev = "<M-[>",        -- Alt+[ for previous suggestion
+            dismiss = "<C-]>",     -- Ctrl+] to dismiss
+          },
+        },
+        panel = { enabled = false }, -- Disable panel for cleaner experience
+        server_opts_overrides = {},
+      })
+    end,
+  },
+
+  -- Copilot Chat for interactive AI assistance
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    branch = "canary",
+    dependencies = {
+      { "zbirenbaum/copilot.lua" },
+      { "nvim-lua/plenary.nvim" },
+    },
+    config = function()
+      require("CopilotChat").setup({
+        debug = false,
+        show_help = "yes",
+        prompts = {
+          Explain = "Please explain how the following code works.",
+          Review = "Please review the following code and provide suggestions for improvement.",
+          Tests = "Please explain how the selected code works, then generate unit tests for it.",
+          Refactor = "Please refactor the following code to improve its clarity and readability.",
+          FixCode = "Please fix the following code to make it work as intended.",
+          BetterNamings = "Please provide better names for the following variables and functions.",
+          Documentation = "Please provide documentation for the following code.",
+          SwaggerApiDocs = "Please provide documentation for the following API using Swagger.",
+          SwaggerJSDocs = "Please write JSDoc for the following API using Swagger.",
+        },
+      })
+    end,
+    keys = {
+      { "<leader>cc", "<cmd>CopilotChat<cr>", desc = "Copilot Chat" },
+      { "<leader>ce", "<cmd>CopilotChatExplain<cr>", desc = "Copilot Explain", mode = {"n", "v"} },
+      { "<leader>cr", "<cmd>CopilotChatReview<cr>", desc = "Copilot Review", mode = {"n", "v"} },
+      { "<leader>cf", "<cmd>CopilotChatFixCode<cr>", desc = "Copilot Fix", mode = {"n", "v"} },
+      { "<leader>co", "<cmd>CopilotChatOptimize<cr>", desc = "Copilot Optimize", mode = {"n", "v"} },
+      { "<leader>cd", "<cmd>CopilotChatDocumentation<cr>", desc = "Copilot Docs", mode = {"n", "v"} },
+      { "<leader>ct", "<cmd>CopilotChatTests<cr>", desc = "Copilot Tests", mode = {"n", "v"} },
+    },
+  },
 }

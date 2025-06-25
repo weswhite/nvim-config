@@ -125,3 +125,35 @@ map("n", "<leader>cF", function()
   vim.fn.setreg('+', path)
   vim.notify('Copied: ' .. path, vim.log.levels.INFO)
 end, { desc = "Copy full file path" })
+
+-- GitHub Copilot mappings (add these to your lua/mappings.lua)
+
+-- Copilot suggestions (these work in insert mode)
+-- Alt+L - Accept suggestion
+-- Alt+W - Accept word
+-- Alt+] - Next suggestion  
+-- Alt+[ - Previous suggestion
+-- Ctrl+] - Dismiss suggestion
+
+-- Copilot chat mappings (normal/visual mode)
+map("n", "<leader>cc", "<cmd>CopilotChat<cr>", { desc = "Copilot Chat" })
+map("v", "<leader>cc", "<cmd>CopilotChat<cr>", { desc = "Copilot Chat" })
+
+-- Quick actions
+map({"n", "v"}, "<leader>ce", "<cmd>CopilotChatExplain<cr>", { desc = "Copilot Explain" })
+map({"n", "v"}, "<leader>cr", "<cmd>CopilotChatReview<cr>", { desc = "Copilot Review" })
+map({"n", "v"}, "<leader>cf", "<cmd>CopilotChatFixCode<cr>", { desc = "Copilot Fix" })
+map({"n", "v"}, "<leader>co", "<cmd>CopilotChatOptimize<cr>", { desc = "Copilot Optimize" })
+map({"n", "v"}, "<leader>cd", "<cmd>CopilotChatDocumentation<cr>", { desc = "Copilot Docs" })
+map({"n", "v"}, "<leader>ct", "<cmd>CopilotChatTests<cr>", { desc = "Copilot Tests" })
+
+-- Toggle Copilot
+map("n", "<leader>cp", function()
+  if require("copilot.client").is_disabled() then
+    require("copilot.command").enable()
+    vim.notify("Copilot enabled", vim.log.levels.INFO)
+  else
+    require("copilot.command").disable()
+    vim.notify("Copilot disabled", vim.log.levels.INFO)
+  end
+end, { desc = "Toggle Copilot" })
